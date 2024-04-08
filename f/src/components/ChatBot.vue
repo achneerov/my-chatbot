@@ -15,7 +15,7 @@ export default {
     return {
       chatMessages: [],
       userInput: "",
-      apiUrl: "http://127.0.0.1:8000/api/generate_text/",
+      apiUrl: "http://127.0.0.1:8000/generate_text/",
       defaultMaxLen: 15,
       defaultNumSequences: 1,
       defaultMaxNewTokens: 15
@@ -35,6 +35,7 @@ export default {
       try {
         // const response = await fetch(`${this.apiUrl}?text=${encodeURIComponent(this.chatMessages.slice(-1)[0].text)}&maxlen=${this.defaultMaxLen}&num_return_sequences=${this.defaultNumSequences}`);
         const response = await fetch(`${this.apiUrl}?text=${encodeURIComponent(messageToBeSent)}&max_new_tokens=${this.defaultMaxNewTokens}&num_return_sequences=${this.defaultNumSequences}`);
+        console.log(response)
         const data = await response.json();
         const generatedText = data.generated_text[0]; // Assuming only one sequence returned
 
@@ -90,4 +91,3 @@ input {
   box-sizing: border-box;
 }
 </style>
-
